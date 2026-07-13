@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kit 170 — Conteúdos Prontos para Personal Trainers</title>
+<style>
+  :root{
+    --bg: #FFFFFF;
+    --bg-soft: #F9FAFB;
+    --card: #FFFFFF;
+    --coral: #FF4E33;
+    --coral-dim: #E8451F;
+    --text-main: #111827;
+    --text-muted: #6B7280;
+    --line: #E5E7EB;
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text-main);
+    font-family:'Inter',-apple-system,sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Archivo Black','Arial Black',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:-0.01em;
+    line-height:0.95;
+  }
+  .mono{
+    font-family:'JetBrains Mono','Courier New',monospace;
+    letter-spacing:0.02em;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,0.9);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;}
+  .logo{font-family:'Archivo Black',sans-serif;font-size:20px;letter-spacing:0.02em; color: var(--text-main);}
+  .logo span{color:var(--coral);}
+  .nav-cta{
+    background:var(--coral);color:#fff;
+    font-weight:700;font-size:14px;
+    padding:10px 20px;border-radius:6px;
+    transition:transform .15s ease, background .15s ease, box-shadow .15s ease;
+  }
+  .nav-cta:hover{background:#E8451F;transform:translateY(-1px);box-shadow: 0 4px 12px rgba(255,78,51,0.2);}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:96px 0 80px;
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+    background: radial-gradient(circle at top right, rgba(255,78,51,0.05), transparent 50%);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;color:var(--coral);
+    border:1px solid rgba(255,78,51,0.2);
+    background: rgba(255,78,51,0.05);
+    padding:6px 12px;border-radius:100px;
+    margin-bottom:24px;
+    font-weight: 600;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--coral);animation:pulse 1.6s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+  .hero h1{
+    font-size:clamp(42px,5.4vw,68px);
+    margin-bottom:24px;
+    color: var(--text-main);
+  }
+  .hero h1 .accent{color:var(--coral);}
+  .hero p.sub{
+    font-size:18px;color:var(--text-muted);
+    max-width:500px;margin-bottom:32px;
+  }
+  .hero-cta-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--coral);color:#fff;
+    font-weight:800;font-size:16px;
+    padding:18px 32px;border-radius:8px;
+    display:inline-flex;align-items:center;gap:10px;
+    box-shadow:0 8px 24px rgba(255,78,51,0.28);
+    transition:all .2s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,78,51,0.4); background: #e8451f;}
+  .price-tag{font-size:14px;color:var(--text-muted);}
+  .price-tag b{color:var(--text-main);font-size:20px;}
+
+  .hero-stats{display:flex;gap:32px;margin-top:48px;}
+  .hero-stats div{text-align:left;}
+  .hero-stats .num{font-family:'Archivo Black',sans-serif;font-size:32px;color:var(--coral);}
+  .hero-stats .lbl{font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em; font-weight: 600;}
+
+  /* Phone mockup / signature element */
+  .phone{
+    position:relative;
+    width:280px;height:560px;
+    margin:0 auto;
+    background:#ffffff;
+    border:10px solid #1f2228;
+    border-radius:36px;
+    box-shadow:var(--shadow-lg);
+    overflow:hidden;
+  }
+  .phone .notch{
+    position:absolute;top:0;left:50%;transform:translateX(-50%);
+    width:120px;height:22px;background:#1f2228;border-radius:0 0 14px 14px;z-index:5;
+  }
+  .phone .screen{
+    position:absolute;inset:0;
+    background:linear-gradient(160deg,#f8f9fa 0%, #e2e8f0 100%);
+  }
+  .phone .rec{
+    position:absolute;top:34px;left:16px;
+    display:flex;align-items:center;gap:6px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff4e33;
+    font-weight: bold;
+  }
+  .phone .rec .dot{width:8px;height:8px;background:#ff4e33;border-radius:50%;animation:pulse 1s infinite;}
+  .phone .caption-box{
+    position:absolute;left:16px;right:16px;bottom:120px;
+    background:rgba(255,255,255,0.9);
+    border-left:3px solid var(--coral);
+    padding:14px 16px;border-radius:8px;
+    font-size:14px;font-weight:600;
+    min-height:60px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    color: var(--text-main);
+  }
+  .phone .caption-box .tag{
+    font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--coral);
+    display:block;margin-bottom:4px;text-transform:uppercase;
+  }
+  .phone .bottom-ui{
+    position:absolute;bottom:0;left:0;right:0;height:90px;
+    background:linear-gradient(0deg, rgba(0,0,0,0.05), transparent);
+    display:flex;align-items:center;justify-content:center;gap:22px;
+  }
+  .phone .bottom-ui .btn-dot{width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,0.05);border:1px solid rgba(0,0,0,0.1);}
+  .phone .bottom-ui .btn-dot.main{background:var(--coral);width:56px;height:56px; border:none; box-shadow: 0 4px 12px rgba(255,78,51,0.3);}
+
+  /* ---------- PAIN SECTION ---------- */
+  section.pain{padding:100px 0;border-bottom:1px solid var(--line); background: var(--bg);}
+  .pain-head{max-width:640px;margin-bottom:56px;}
+  .pain-head .kicker{font-family:'JetBrains Mono',monospace;color:var(--coral);font-size:13px;margin-bottom:12px;display:block; font-weight: 600;}
+  .pain-head h2{font-size:clamp(32px,4vw,44px); color: var(--text-main);}
+  .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .pain-card{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:16px;padding:32px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .pain-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+  .pain-card .x{color:var(--coral);font-family:'JetBrains Mono',monospace;font-size:24px;margin-bottom:16px;display:block;}
+  .pain-card p{color:var(--text-muted);font-size:15px; line-height: 1.6;}
+  .pain-card strong{color:var(--text-main);display:block;font-size:18px;margin-bottom:10px;}
+
+  /* ---------- WHAT'S INSIDE ---------- */
+  section.inside{padding:100px 0;border-bottom:1px solid var(--line);background:var(--bg-soft);}
+  .inside-head{text-align:center;max-width:640px;margin:0 auto 64px;}
+  .inside-head .kicker{font-family:'JetBrains Mono',monospace;color:var(--coral);font-size:13px;display:block;margin-bottom:12px; font-weight:600;}
+  .inside-head h2{font-size:clamp(32px,4vw,46px);margin-bottom:16px; color: var(--text-main);}
+  .inside-head p{color:var(--text-muted);font-size:17px;}
+
+  .modules{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .module{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:32px 24px;text-align:left;position:relative;overflow:hidden;
+    transition:border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+    box-shadow: var(--shadow-sm);
+  }
+  .module:hover{border-color:var(--coral);transform:translateY(-5px); box-shadow: var(--shadow-md);}
+  .module .count{font-family:'Archivo Black',sans-serif;font-size:48px;color:var(--coral);line-height:1;}
+  .module .label{font-size:15px;font-weight:800;margin-top:12px;text-transform:uppercase;letter-spacing:.02em; color: var(--text-main);}
+  .module .desc{font-size:14px;color:var(--text-muted);margin-top:12px; line-height: 1.6;}
+
+  .tip-note{
+    margin-top:48px;
+    display:flex;gap:16px;align-items:flex-start;
+    background:rgba(255,78,51,0.05);
+    border:1px dashed rgba(255,78,51,0.3);
+    border-radius:12px;padding:24px 28px;
+    max-width:760px;margin-left:auto;margin-right:auto;
+  }
+  .tip-note .emoji{font-size:24px;}
+  .tip-note p{font-size:15px;color:var(--text-muted); line-height: 1.6;}
+  .tip-note strong{color:var(--text-main);}
+
+  /* ---------- HOW IT WORKS ---------- */
+  section.how{padding:100px 0;border-bottom:1px solid var(--line); background: var(--bg);}
+  .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;}
+  .step{position:relative;padding-left:0;}
+  .step .n{
+    font-family:'JetBrains Mono',monospace;color:var(--coral);
+    font-size:14px;border-bottom:2px solid rgba(255,78,51,0.2);
+    padding-bottom:12px;margin-bottom:20px;display:block; font-weight: bold;
+  }
+  .step h3{font-size:22px;text-transform:none;font-family:'Inter',sans-serif;font-weight:800;margin-bottom:12px; color: var(--text-main);}
+  .step p{color:var(--text-muted);font-size:16px; line-height: 1.6;}
+
+  /* ---------- PRICE ---------- */
+  section.price{padding:112px 0;position:relative; background: var(--bg-soft);}
+  .price-card{
+    max-width:500px;margin:0 auto;
+    background:var(--card);
+    border:2px solid var(--coral);
+    border-radius:24px;padding:56px 48px;
+    text-align:center;
+    box-shadow:0 24px 48px rgba(255,78,51,0.08);
+  }
+  .price-card .kicker{font-family:'JetBrains Mono',monospace;color:var(--coral);font-size:13px;letter-spacing:.05em;display:block;margin-bottom:20px; font-weight:bold;}
+  .price-card .old{color:var(--text-muted);font-size:16px;text-decoration:line-through;}
+  .price-card .value{
+    font-family:'Archivo Black',sans-serif;
+    font-size:72px;color:var(--text-main);margin:8px 0 4px;
+  }
+  .price-card .value sup{font-size:28px;top:-0.6em;}
+  .price-card .value small{font-size:24px;}
+  .price-card .cash{font-size:14px;color:var(--text-muted);margin-bottom:32px;display:block;}
+  .price-list{list-style:none;text-align:left;margin-bottom:40px;}
+  .price-list li{display:flex;gap:12px;font-size:15px;color:var(--text-main);margin-bottom:16px; font-weight: 500;}
+  .price-list li .check{color:var(--coral);font-weight:800; font-size:16px;}
+  .btn-primary.full{width:100%;justify-content:center;font-size:18px;padding:22px;}
+  .guarantee{font-size:13px;color:var(--text-muted);margin-top:20px;}
+
+  /* ---------- FAQ ---------- */
+  section.faq{padding:100px 0;border-top:1px solid var(--line);background:var(--bg);}
+  .faq-head{max-width:640px;margin-bottom:48px;}
+  .faq-head .kicker{font-family:'JetBrains Mono',monospace;color:var(--coral);font-size:13px;display:block;margin-bottom:12px; font-weight:bold;}
+  .faq-head h2{font-size:clamp(30px,3.6vw,40px); color: var(--text-main);}
+  .faq-list {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  details{
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.3s ease;
+  }
+  details[open] {
+    border-color: rgba(255,78,51,0.3);
+    box-shadow: var(--shadow-sm);
+  }
+  summary{
+    cursor:pointer;font-weight:700;font-size:17px;
+    display:flex;justify-content:space-between;align-items:center;
+    list-style:none;
+    color: var(--text-main);
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:"+";font-family:'JetBrains Mono',monospace;color:var(--coral);font-size:24px; transition: transform 0.3s ease;}
+  details[open] summary::after{content:"–"; transform: rotate(180deg);}
+  details p{color:var(--text-muted);font-size:15px;margin-top:16px;line-height:1.6;}
+
+  /* ---------- FOOTER CTA ---------- */
+  footer{
+    padding:80px 0 48px;text-align:center;
+    border-top:1px solid var(--line);
+    background: var(--bg-soft);
+  }
+  footer h2{font-size:clamp(30px,4vw,44px);margin-bottom:24px; color: var(--text-main);}
+  footer .fine{color:var(--text-muted);font-size:14px;margin-top:32px;}
+
+  /* ---------- ANIMATIONS (Scroll Fade) ---------- */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .scale-up {
+    opacity: 0;
+    transform: scale(0.92) translateY(15px);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .scale-up.visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .phone{margin-top:32px;}
+    .pain-grid, .how-grid{grid-template-columns:1fr;}
+    .modules{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:520px){
+    .modules{grid-template-columns:1fr;}
+    .hero-stats{flex-wrap:wrap;gap:20px;}
+    .price-card{padding:40px 24px;}
+  }
+
+  /* focus visibility */
+  a:focus-visible, summary:focus-visible{outline:2px solid var(--coral);outline-offset:3px; border-radius:4px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">KIT<span>170</span></div>
+    <a href="#comprar" class="nav-cta">Quero o meu</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="fade-in-up">
+      <span class="eyebrow"><span class="dot"></span> PARA PERSONAL TRAINERS QUE GRAVAM VÍDEO</span>
+      <h1>Nunca mais trave<br>na hora de <span class="accent">gravar</span>.</h1>
+      <p class="sub">170 conteúdos prontos — CTAs, temas, ganchos e stories — pra você abrir a câmera e já saber exatamente o que falar.</p>
+      <div class="hero-cta-row">
+        <a href="#comprar" class="btn-primary">Quero o Kit 170 →</a>
+        <span class="price-tag">Por apenas <b>R$ 27,90</b></span>
+      </div>
+      <div class="hero-stats">
+        <div><div class="num">50</div><div class="lbl">CTAs</div></div>
+        <div><div class="num">50</div><div class="lbl">Temas</div></div>
+        <div><div class="num">50</div><div class="lbl">Ganchos</div></div>
+        <div><div class="num">20</div><div class="lbl">Stories</div></div>
+      </div>
+    </div>
+
+    <div class="phone scale-up" aria-hidden="true" style="transition-delay: 0.15s;">
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="rec"><span class="dot"></span> GRAVANDO</div>
+        <div class="caption-box">
+          <span class="tag">Gancho · 00:00–00:03</span>
+          Você está fazendo esse exercício errado há anos.
+        </div>
+        <div class="bottom-ui">
+          <div class="btn-dot"></div>
+          <div class="btn-dot main"></div>
+          <div class="btn-dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="pain">
+  <div class="wrap">
+    <div class="pain-head fade-in-up">
+      <span class="kicker">// O PROBLEMA</span>
+      <h2>Você sabe treinar. Gravar vídeo é outra história.</h2>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card fade-in-up" style="transition-delay: 0.1s;">
+        <span class="x">01</span>
+        <strong>A câmera liga e a mente trava</strong>
+        <p>Você sabe montar treino, mas na hora de gravar esquece o que ia falar e grava de novo. E de novo.</p>
+      </div>
+      <div class="pain-card fade-in-up" style="transition-delay: 0.2s;">
+        <span class="x">02</span>
+        <strong>Vídeo bom, engajamento zero</strong>
+        <p>O conteúdo é bom, mas termina sem pedir nada — e o Instagram não entrega pra mais gente.</p>
+      </div>
+      <div class="pain-card fade-in-up" style="transition-delay: 0.3s;">
+        <span class="x">03</span>
+        <strong>Sem tempo pra estudar copy</strong>
+        <p>Você não tem 3 horas por dia pra estudar gatilho mental. Você tem alunos pra atender.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="inside">
+  <div class="wrap">
+    <div class="inside-head fade-in-up">
+      <span class="kicker">// O QUE VOCÊ RECEBE</span>
+      <h2>170 conteúdos mastigados. Prontos pra usar hoje.</h2>
+      <p>Escolha um item, adapte pro seu tom de voz, grave. Sem trava, sem procrastinar procurando ideia.</p>
+    </div>
+    <div class="modules">
+      <div class="module fade-in-up" style="transition-delay: 0.1s;">
+        <div class="count">50</div>
+        <div class="label">CTAs</div>
+        <div class="desc">Chamadas para ação prontas pra fechar seus vídeos e gerar comentário, seguidor ou venda.</div>
+      </div>
+      <div class="module fade-in-up" style="transition-delay: 0.2s;">
+        <div class="count">50</div>
+        <div class="label">Temas</div>
+        <div class="desc">Assuntos testados pra você nunca mais travar decidindo sobre o que gravar hoje.</div>
+      </div>
+      <div class="module fade-in-up" style="transition-delay: 0.3s;">
+        <div class="count">50</div>
+        <div class="label">Ganchos</div>
+        <div class="desc">As primeiras frases que fazem quem tá rolando o feed parar pra assistir seu vídeo.</div>
+      </div>
+      <div class="module fade-in-up" style="transition-delay: 0.4s;">
+        <div class="count">20</div>
+        <div class="label">Stories</div>
+        <div class="desc">Sugestões prontas pra manter sua audiência engajada e aquecida todos os dias.</div>
+      </div>
+    </div>
+    <div class="tip-note fade-in-up" style="transition-delay: 0.5s;">
+      <span class="emoji">💡</span>
+      <p><strong>Cada bloco vem com uma dica de uso.</strong> No fim de cada seção, você aprende exatamente como aplicar aquele conteúdo pra ele funcionar de verdade — não é só uma lista, é um manual prático.</p>
+    </div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="wrap">
+    <div class="pain-head fade-in-up">
+      <span class="kicker">// COMO FUNCIONA</span>
+      <h2>3 passos entre você e o próximo vídeo pronto.</h2>
+    </div>
+    <div class="how-grid">
+      <div class="step fade-in-up" style="transition-delay: 0.1s;">
+        <span class="n">01</span>
+        <h3>Abra o material</h3>
+        <p>Escolha um tema, um gancho e um CTA da lista — todos já pensados pra personal trainer.</p>
+      </div>
+      <div class="step fade-in-up" style="transition-delay: 0.2s;">
+        <span class="n">02</span>
+        <h3>Adapte ao seu tom</h3>
+        <p>Ajuste as palavras pro seu jeito de falar. O conteúdo é a base, sua personalidade é o tempero.</p>
+      </div>
+      <div class="step fade-in-up" style="transition-delay: 0.3s;">
+        <span class="n">03</span>
+        <h3>Grave e publique</h3>
+        <p>Sem procrastinar procurando ideia. Você grava mais, posta com mais frequência, cresce mais rápido.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="price" id="comprar">
+  <div class="wrap">
+    <div class="price-card fade-in-up">
+      <span class="kicker">ACESSO IMEDIATO</span>
+      <span class="old">De R$ 47,00</span>
+      <div class="value"><sup>R$</sup>27<small>,90</small></div>
+      <span class="cash">pagamento único · sem mensalidade</span>
+      <ul class="price-list">
+        <li><span class="check">✓</span> 50 CTAs prontos para vídeos</li>
+        <li><span class="check">✓</span> 50 temas para nunca mais travar</li>
+        <li><span class="check">✓</span> 50 ganchos criativos testados</li>
+        <li><span class="check">✓</span> 20 sugestões de stories</li>
+        <li><span class="check">✓</span> Dica de uso ao final de cada bloco</li>
+        <li><span class="check">✓</span> Acesso imediato após a compra</li>
+      </ul>
+      <a href="https://kiwify.com.br/SEU-LINK-AQUI" class="btn-primary full" id="cta-comprar">Comprar agora →</a>
+      <p class="guarantee">Pagamento processado com segurança pela Kiwify.</p>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <div class="faq-head fade-in-up">
+      <span class="kicker">// DÚVIDAS</span>
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div class="faq-list">
+      <details class="fade-in-up" style="transition-delay: 0.1s;">
+        <summary>Como eu recebo o material?</summary>
+        <p>Assim que o pagamento é confirmado, você recebe o acesso direto no seu e-mail e pode baixar o Kit 170 na hora.</p>
+      </details>
+      <details class="fade-in-up" style="transition-delay: 0.2s;">
+        <summary>Serve pra qualquer rede social?</summary>
+        <p>Sim. Os CTAs, temas, ganchos e stories foram escritos pra funcionar em Instagram, TikTok e Reels — qualquer formato de vídeo curto.</p>
+      </details>
+      <details class="fade-in-up" style="transition-delay: 0.3s;">
+        <summary>Preciso ter experiência gravando vídeo?</summary>
+        <p>Não. O material foi feito justamente pra quem trava na hora de gravar — desde quem tá começando até quem já grava e quer parar de repetir a mesma fórmula.</p>
+      </details>
+      <details class="fade-in-up" style="transition-delay: 0.4s;">
+        <summary>Posso usar em mais de uma rede social?</summary>
+        <p>Sim, sem restrição. Use o mesmo conteúdo adaptado pra quantas redes você quiser.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer class="fade-in-up">
+  <div class="wrap">
+    <h2>Seu próximo vídeo já<br>tá <span style="color:var(--coral)">esperando</span> aqui.</h2>
+    <a href="#comprar" class="btn-primary">Quero o Kit 170 por R$ 27,90 →</a>
+    <p class="fine">KIT 170 · Conteúdos para Personal Trainers · Produto digital de entrega imediata</p>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.fade-in-up, .scale-up').forEach(el => {
+      observer.observe(el);
+    });
+  });
+</script>
+</body>
+</html>
