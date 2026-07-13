@@ -47,6 +47,7 @@
   }
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
   a{color:inherit;text-decoration:none;}
+  a:hover, a:focus, a:active{color:inherit;text-decoration:none;}
   img{display:block;max-width:100%;}
 
   /* ---------- NAV ---------- */
@@ -111,9 +112,10 @@
     padding:18px 32px;border-radius:8px;
     display:inline-flex;align-items:center;gap:10px;
     box-shadow:0 8px 24px rgba(255,78,51,0.28);
-    transition:all .2s ease;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
   }
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,78,51,0.4); background: #e8451f;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,78,51,0.4); background:#e8451f;}
+  .btn-primary:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
   .price-tag{font-size:14px;color:var(--text-muted);}
   .price-tag b{color:var(--text-main);font-size:20px;}
 
@@ -238,11 +240,12 @@
     background:var(--card);border:1px solid var(--line);
     border-radius:16px;padding:32px;
     box-shadow: var(--shadow-sm);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   }
   .pain-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-md);
+    border-color: rgba(255,78,51,0.28);
   }
   .pain-card .x{color:var(--coral);font-family:'JetBrains Mono',monospace;font-size:24px;margin-bottom:16px;display:block;}
   .pain-card p{color:var(--text-muted);font-size:15px; line-height: 1.6;}
@@ -342,29 +345,31 @@
     max-width: 800px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
   }
   details{
     background: var(--bg-soft);
     border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 24px;
-    transition: all 0.3s ease;
+    border-radius: 14px;
+    padding: 20px 24px;
+    transition: all 0.28s ease;
   }
   details[open] {
-    border-color: rgba(255,78,51,0.3);
+    border-color: rgba(255,78,51,0.25);
     box-shadow: var(--shadow-sm);
+    background: #fff;
   }
   summary{
     cursor:pointer;font-weight:700;font-size:17px;
     display:flex;justify-content:space-between;align-items:center;
     list-style:none;
     color: var(--text-main);
+    gap:16px;
   }
   summary::-webkit-details-marker{display:none;}
-  summary::after{content:"+";font-family:'JetBrains Mono',monospace;color:var(--coral);font-size:24px; transition: transform 0.3s ease;}
+  summary::after{content:"+";font-family:'JetBrains Mono',monospace;color:var(--coral);font-size:22px; transition: transform 0.28s ease; flex-shrink:0;}
   details[open] summary::after{content:"–"; transform: rotate(180deg);}
-  details p{color:var(--text-muted);font-size:15px;margin-top:16px;line-height:1.6;}
+  details p{color:var(--text-muted);font-size:15px;margin-top:14px;line-height:1.7;}
 
   /* ---------- FOOTER CTA ---------- */
   footer{
@@ -378,8 +383,8 @@
   /* ---------- ANIMATIONS (Scroll Fade) ---------- */
   .fade-in-up {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(22px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
   }
   .fade-in-up.visible {
@@ -388,8 +393,8 @@
   }
   .scale-up {
     opacity: 0;
-    transform: scale(0.92) translateY(15px);
-    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scale(0.94) translateY(12px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
   }
   .scale-up.visible {
@@ -654,6 +659,20 @@
 
     document.querySelectorAll('.fade-in-up, .scale-up').forEach(el => {
       observer.observe(el);
+    });
+
+    const faqItems = document.querySelectorAll('.faq-list details');
+
+    faqItems.forEach((item) => {
+      item.addEventListener('toggle', () => {
+        if (!item.open) return;
+
+        faqItems.forEach((other) => {
+          if (other !== item && other.open) {
+            other.open = false;
+          }
+        });
+      });
     });
   });
 </script>
