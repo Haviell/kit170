@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kit 170 — Conteúdos Prontos para Personal Trainers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Archivo+Black&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
   :root{
     --bg: #FFFFFF;
@@ -47,8 +51,8 @@
 
   /* ---------- NAV ---------- */
   nav{
-    position:sticky;top:0;z-index:50;
-    background:rgba(255,255,255,0.9);
+    position:sticky;top:0;z-index:60;
+    background:rgba(255,255,255,0.95);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);
   }
@@ -137,6 +141,17 @@
     position:absolute;inset:0;
     background:linear-gradient(160deg,#f8f9fa 0%, #e2e8f0 100%);
   }
+  .phone .screen::before{
+    content:"";
+    position:absolute;inset:0;
+    background:url('celular.png') center/cover no-repeat;
+    opacity:0.95;
+    z-index:0;
+  }
+  .phone .screen > *{
+    position:relative;
+    z-index:1;
+  }
   .phone .rec{
     position:absolute;top:34px;left:16px;
     display:flex;align-items:center;gap:6px;
@@ -144,19 +159,67 @@
     font-weight: bold;
   }
   .phone .rec .dot{width:8px;height:8px;background:#ff4e33;border-radius:50%;animation:pulse 1s infinite;}
+  .strategic-marquee{
+    position:sticky;
+    top:72px;
+    z-index:55;
+    margin: 0 0 24px;
+    padding: 12px 0;
+    background: linear-gradient(90deg, var(--coral) 0%, var(--coral-dim) 100%);
+    box-shadow: 0 10px 24px rgba(255,78,51,0.2);
+    overflow: hidden;
+  }
+  .strategic-marquee .marquee-track{
+    display:flex;
+    width:max-content;
+    gap:2.5rem;
+    animation: marquee 20s linear infinite;
+    will-change: transform;
+  }
+  .strategic-marquee .marquee-track span{
+    display:inline-flex;
+    align-items:center;
+    gap:0.65rem;
+    white-space:nowrap;
+    color:#fff;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    padding: 0 0.5rem;
+  }
+  .strategic-marquee:hover .marquee-track{
+    animation-play-state: paused;
+  }
+  .strategic-marquee .marquee-track i{
+    font-size:13px;
+    opacity:0.95;
+  }
+  @keyframes marquee{
+    from{transform:translateX(0);} 
+    to{transform:translateX(-50%);} 
+  }
   .phone .caption-box{
     position:absolute;left:16px;right:16px;bottom:120px;
-    background:rgba(255,255,255,0.9);
+    background:rgba(255,255,255,0.95);
     border-left:3px solid var(--coral);
-    padding:14px 16px;border-radius:8px;
+    padding:14px 16px;border-radius:10px;
     font-size:14px;font-weight:600;
-    min-height:60px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    min-height:74px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
     color: var(--text-main);
+    transition:opacity .35s ease, transform .35s ease;
+  }
+  .phone .caption-box.is-changing{
+    opacity:0;
+    transform:translateY(6px);
   }
   .phone .caption-box .tag{
     font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--coral);
     display:block;margin-bottom:4px;text-transform:uppercase;
+  }
+  .phone .caption-box .message{
+    display:block;line-height:1.45;
   }
   .phone .bottom-ui{
     position:absolute;bottom:0;left:0;right:0;height:90px;
@@ -192,6 +255,23 @@
   .inside-head .kicker{font-family:'JetBrains Mono',monospace;color:var(--coral);font-size:13px;display:block;margin-bottom:12px; font-weight:600;}
   .inside-head h2{font-size:clamp(32px,4vw,46px);margin-bottom:16px; color: var(--text-main);}
   .inside-head p{color:var(--text-muted);font-size:17px;}
+
+  .product-showcase{
+    display:grid;grid-template-columns:1.05fr 0.95fr;gap:28px;align-items:center;
+    max-width:1040px;margin:0 auto 32px;
+  }
+  .product-visual{
+    display:flex;justify-content:center;align-items:center;
+    padding:8px 0;
+  }
+  .product-visual img{
+    width:min(100%, 420px);display:block;border-radius:24px;box-shadow:0 20px 40px rgba(17,24,39,0.08);
+  }
+  .product-copy .kicker{font-family:'JetBrains Mono',monospace;color:var(--coral);font-size:13px;display:block;margin-bottom:12px;font-weight:600;}
+  .product-copy h3{font-size:clamp(22px,2.4vw,28px);margin-bottom:12px;color:var(--text-main);text-transform:none;letter-spacing:-0.01em;line-height:1.2;}
+  .product-copy p{color:var(--text-muted);font-size:15px;line-height:1.7;}
+  .product-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+  .product-tags span{display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(255,78,51,0.06);color:var(--coral);font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
 
   .modules{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
   .module{
@@ -323,10 +403,13 @@
     .hero-grid{grid-template-columns:1fr;}
     .phone{margin-top:32px;}
     .pain-grid, .how-grid{grid-template-columns:1fr;}
+    .product-showcase{grid-template-columns:1fr;}
+    .product-visual{order:2;}
     .modules{grid-template-columns:repeat(2,1fr);}
   }
   @media (max-width:520px){
     .modules{grid-template-columns:1fr;}
+    .product-visual img{width:100%;}
     .hero-stats{flex-wrap:wrap;gap:20px;}
     .price-card{padding:40px 24px;}
   }
@@ -343,6 +426,21 @@
     <a href="#comprar" class="nav-cta">Quero o meu</a>
   </div>
 </nav>
+
+<div class="strategic-marquee" aria-label="Mensagens promocionais">
+  <div class="marquee-track">
+    <span><i class="fa-solid fa-crown"></i>Compra vitalícia</span>
+    <span><i class="fa-solid fa-bolt"></i>Acesso imediato após a compra</span>
+    <span><i class="fa-solid fa-shield-halved"></i>Pagamento seguro via Kiwify</span>
+    <span><i class="fa-solid fa-star"></i>170 conteúdos prontos para usar hoje</span>
+    <span><i class="fa-solid fa-fire"></i>Sem mensalidade</span>
+    <span><i class="fa-solid fa-crown"></i>Compra vitalícia</span>
+    <span><i class="fa-solid fa-bolt"></i>Acesso imediato após a compra</span>
+    <span><i class="fa-solid fa-shield-halved"></i>Pagamento seguro via Kiwify</span>
+    <span><i class="fa-solid fa-star"></i>170 conteúdos prontos para usar hoje</span>
+    <span><i class="fa-solid fa-fire"></i>Sem mensalidade</span>
+  </div>
+</div>
 
 <header class="hero">
   <div class="wrap hero-grid">
@@ -366,9 +464,9 @@
       <div class="notch"></div>
       <div class="screen">
         <div class="rec"><span class="dot"></span> GRAVANDO</div>
-        <div class="caption-box">
-          <span class="tag">Gancho · 00:00–00:03</span>
-          Você está fazendo esse exercício errado há anos.
+        <div class="caption-box" id="phone-carousel">
+          <span class="tag" id="phone-carousel-tag">Gancho · 00:00–00:03</span>
+          <span class="message" id="phone-carousel-message">Você perde massa porque faz isso.</span>
         </div>
         <div class="bottom-ui">
           <div class="btn-dot"></div>
@@ -412,6 +510,22 @@
       <span class="kicker">// O QUE VOCÊ RECEBE</span>
       <h2>170 conteúdos mastigados. Prontos pra usar hoje.</h2>
       <p>Escolha um item, adapte pro seu tom de voz, grave. Sem trava, sem procrastinar procurando ideia.</p>
+    </div>
+    <div class="product-showcase fade-in-up" style="transition-delay: 0.1s;">
+      <div class="product-copy">
+        <span class="kicker">// VISUAL DO PRODUTO</span>
+        <h3>Uma estrutura pronta para você vender mais conteúdo com menos esforço.</h3>
+        <p>O Kit 170 foi pensado para te entregar ideias, ganchos, CTAs e stories de forma simples e estratégica, direto no fluxo do seu dia a dia.</p>
+        <div class="product-tags">
+          <span>Ganchos</span>
+          <span>CTAs</span>
+          <span>Temas</span>
+          <span>Stories</span>
+        </div>
+      </div>
+      <div class="product-visual">
+        <img src="produto.png" alt="Imagem do produto Kit 170">
+      </div>
     </div>
     <div class="modules">
       <div class="module fade-in-up" style="transition-delay: 0.1s;">
@@ -543,6 +657,39 @@
       observer.observe(el);
     });
   });
+</script>
+<script>
+  const slides = [
+    { tag: 'Gancho · 00:00–00:03', message: 'Você perde massa porque faz isso.' },
+    { tag: 'CTA · 00:03–00:05', message: 'Comenta "TREINO".' },
+    { tag: 'Story · 00:05–00:08', message: 'Hoje um aluno me perguntou...' },
+    { tag: 'Tema · 00:08–00:10', message: '5 erros no supino.' }
+  ];
+
+  const carousel = document.getElementById('phone-carousel');
+  const carouselTag = document.getElementById('phone-carousel-tag');
+  const carouselMessage = document.getElementById('phone-carousel-message');
+
+  if (carousel && carouselTag && carouselMessage) {
+    let currentIndex = 0;
+
+    const renderSlide = () => {
+      const slide = slides[currentIndex];
+      carousel.classList.add('is-changing');
+      setTimeout(() => {
+        carouselTag.textContent = slide.tag;
+        carouselMessage.textContent = slide.message;
+        carousel.classList.remove('is-changing');
+      }, 180);
+    };
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      renderSlide();
+    }, 2600);
+
+    renderSlide();
+  }
 </script>
 </body>
 </html>
